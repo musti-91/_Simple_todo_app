@@ -1,8 +1,8 @@
-import { ADD_PLACE, DELETE_PLACE } from '../actions/actionTypes';
+import { ADD_PLACE, DELETE_PLACE } from '../actions/actionTypes'
 const initialState = {
 	places: [],
 	selectedPlace: null
-};
+}
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_PLACE:
@@ -16,15 +16,15 @@ const reducer = (state = initialState, action) => {
 						image: { uri: 'https://picsum.photos/200/200/' }
 					}
 				]
-			};
+			}
 		case DELETE_PLACE:
 			return {
 				...state,
 				places: state.places.filter((place) => place.key !== action.placeKey),
 				selectedPlace: null
-			};
+			}
 		default:
-			return state;
+			return state
 	}
 };
 

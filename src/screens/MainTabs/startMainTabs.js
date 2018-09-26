@@ -1,5 +1,5 @@
-import { Navigation } from 'react-native-navigation';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Navigation } from 'react-native-navigation'
+import Icon from 'react-native-vector-icons/Ionicons'
 const startMainTabs = () => {
 	Promise.all([
 		Icon.getImageSource('md-map', 30),
@@ -46,5 +46,5 @@ const startMainTabs = () => {
 			}
 		})
 	);
-};
-export default startMainTabs;
+}
+export default startMainTabs

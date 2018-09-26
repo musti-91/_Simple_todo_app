@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { View, Text, Dimensions, StyleSheet } from 'react-native';
+import React, { Component } from 'react'
+import { View, Text, Dimensions, StyleSheet } from 'react-native'
 
 class SideDrawer extends Component {
-	render() {
+	render () {
 		return (
 			<View
 				style={[
@@ -15,7 +15,7 @@ class SideDrawer extends Component {
 			>
 				<Text>Side Drawer</Text>
 			</View>
-		);
+		)
 	}
 }
 //styles for android devices
@@ -25,5 +25,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#eee',
 		flex: 1
 	}
-});
-export default SideDrawer;
+})
+
+export default SideDrawer
