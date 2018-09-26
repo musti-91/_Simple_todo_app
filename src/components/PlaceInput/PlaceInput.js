@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 
 class PlaceInput extends Component {
+	constructor(props) {
+		super(props)
+		this.inputRef = React.createRef()
+	}
 	state = {
 		text: ''
 	};
+
+	componentDidMount () {
+		this.inputRef.current.focus()
+	}
 
 	_onPlaceAdded = () => {
 		if (this.state.text.trim() === '') {
@@ -14,7 +22,7 @@ class PlaceInput extends Component {
 		this.setState({ text: '' });
 		this.props.back();
 	};
-	render() {
+	render () {
 		const { text } = this.state;
 		return (
 			<View style={styles.fieldContainer}>
@@ -24,6 +32,7 @@ class PlaceInput extends Component {
 					onChangeText={(text) => this.setState({ text })}
 					onSubmitEditing={this._onPlaceAdded}
 					placeholder="Awesome place"
+					ref={this.inputRef}
 				/>
 				<Button onPress={this._onPlaceAdded} title="add" />
 			</View>

@@ -9,8 +9,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import deletePlace from '../../store/actions/index'
 class PlaceDetail extends Component {
 	onDeletePressed = () => {
-		const { key } = this.props.place;
-		this.props.onItemDeleted(key);
+		const { key } = this.props.place
+		this.props.onItemDeleted(key)
 	}
 	render () {
 		const { place } = this.props;

@@ -1,5 +1,5 @@
 // exporting store
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import places from './reducers/places'
 
 const store = createStore(combineReducers({ places }))

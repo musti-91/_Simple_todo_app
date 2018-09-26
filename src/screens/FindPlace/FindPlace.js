@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, Animated } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import PlaceList from '../../components/PLaceList/PlaceList'
 class FindPlace extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			fetchPlaces: false,
+			removeAnimation: new Animated.Value(0)
+		}
 		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
 	}
+
 	onNavigatorEvent = (event) => {
 		if (event.type === 'NavBarButtonPress') {
 			if (event.id === 'sideDrawerToggle') {
@@ -18,6 +23,7 @@ class FindPlace extends Component {
 			}
 		}
 	}
+
 	onItemSelected = (key) => {
 		const place = this.props.places.find((place) => place.key === key)
 		this.props.navigator.push({
@@ -26,14 +32,52 @@ class FindPlace extends Component {
 			passProps: { place }
 		})
 	}
+
 	render () {
+		const { fetchPlaces, removeAnimation } = this.state
+		const { loadButton, buttonText } = styles
 		return (
 			<View>
-				<PlaceList places={this.props.places} onItemSelected={this.onItemSelected} />
+				{fetchPlaces && this._renderPlaces(removeAnimation)}
+				<TouchableOpacity onPress={this._onLoadPlaces} style={loadButton}>
+					<View>
+						<Text style={buttonText}>Load Places</Text>
+					</View>
+				</TouchableOpacity>
 			</View>
 		)
 	}
+
+	_renderPlaces = (removeAnimation) => (
+		<Animated.View style={{ opacity: removeAnimation}}>
+			<PlaceList places={this.props.places} onItemSelected={this.onItemSelected} />
+		</Animated.View>
+	)
+	_onLoadPlaces = () => {
+		Animated.timing(this.state.removeAnimation, {
+			duration: 1000,
+			toValue: 1,
+			useNativeDriver: true
+		}).start()
+		this.setState(() => ({
+			fetchPlaces: true
+		}))
+	}
 }
+
+const styles = StyleSheet.create({
+	loadButton: {
+		width: "25%",
+		padding: 10,
+		backgroundColor: 'blue',
+		borderRadius: 10,
+		alignSelf: "center",
+		marginTop: 50
+	},
+	buttonText: {
+		color: 'white'
+	}
+})
 
 FindPlace.propTypes = {
 	places: PropTypes.array
