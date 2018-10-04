@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
 class PlaceInput extends Component {
 	constructor(props) {
@@ -34,7 +34,9 @@ class PlaceInput extends Component {
 					placeholder="Awesome place"
 					ref={this.inputRef}
 				/>
-				<Button onPress={this._onPlaceAdded} title="add" />
+				<TouchableOpacity onPress={this._onPlaceAdded} style={{ height: 30 }}>
+					<Text style={{ color: 'orange', fontSize: 20 }}>Add</Text>
+				</TouchableOpacity>
 			</View>
 		);
 	}
@@ -45,15 +47,16 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		width: '100%',
 		marginTop: 6,
-		backgroundColor: '#eee',
+		backgroundColor: '#000',
 		padding: 10
 	},
 	input: {
 		borderWidth: 1,
 		borderColor: 'orange',
-		borderRadius: 10,
+		borderRadius: 3.5,
 		width: '70%',
-		paddingLeft: 10
+		paddingLeft: 10,
+		color: 'orange'
 	}
 });
 

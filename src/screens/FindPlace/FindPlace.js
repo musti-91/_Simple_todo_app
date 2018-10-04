@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet, Animated } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, Animated, Easing } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import PlaceList from '../../components/PLaceList/PlaceList'
@@ -57,7 +57,8 @@ class FindPlace extends Component {
 		Animated.timing(this.state.removeAnimation, {
 			duration: 1000,
 			toValue: 1,
-			useNativeDriver: true
+			useNativeDriver: true,
+			easing:Easing.back()
 		}).start()
 		this.setState(() => ({
 			fetchPlaces: true
